@@ -64,6 +64,39 @@ class MainController extends Controller
         return view('edit_note', ['note'=> $note]);
     }
 
+    public function editNoteSubmit(Request $request)
+    {
+        $request->validate(
+            [
+                'text_title' => 'required|min:3|max:200', 
+                'text_note' => 'required|min:3|max:3000',
+            ],
+            //error messages
+            [
+                'text_title.required' => 'O título é obrigatório.',
+                'text_title.min' => 'O título deve ter pelo menos :min carácteres',
+                'text_title.max' => 'O título deve ter no máximo :max carácteres',
+                
+                'text_note.required' => 'O preenchimento do texto é obrigatório.',
+                'text_note.min' => 'A nota deve ter pelo menos :min carácteres',
+                'text_note.max' => 'A nota deve ter no máximo :max carácteres'
+            ]
+        );
+        if($request->note_id == null){ //checar se a nota existe pelo id
+            return redirect()->route('home');
+        }
+
+        $id = Operations::decryptId($request->note_id); // desencriptar o id
+
+        $note = Note::find($id); //carregar a nota
+
+        $note->title = $request->text_title; //atualizar os campos das notas
+        $note->text= $request->text_note;
+        $note->save();
+
+        return redirect()->route('home');
+    }
+
     public function deleteNote($id)
     {
         // $id = $this->decryptId($id);
