@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Prject Notes
+## About Project
 
 Projeto desenvolvido com o framework Laravel. Tal projeto foi desenvolvido com o objetivo de aprimorar conceitos importantes como Migration, Routes, Controllers, Views e Blade, Encriptação e conexão com MySQL, Seeders, introdução ao Eloquent ORM Model, operações CRUD com Models e soft delete e hard delete.
 
