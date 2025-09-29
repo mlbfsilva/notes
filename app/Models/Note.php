@@ -3,10 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Model
+class Note extends Model
 {
-    public function notes()
+
+    use SoftDeletes;
+
+    public function user()
     {
         return $this->hasMany(Note::class);
     }
