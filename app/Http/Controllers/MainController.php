@@ -64,6 +64,11 @@ class MainController extends Controller
     {
         // $id = $this->decryptId($id);
         $id = Operations::decryptId($id);
+
+        if($id == null){
+            return redirect()->route('home');
+        }
+
         $note = Note::find($id);
         return view('edit_note', ['note'=> $note]);
     }
@@ -92,6 +97,10 @@ class MainController extends Controller
 
         $id = Operations::decryptId($request->note_id); // desencriptar o id
 
+        if($id == null){
+            return redirect()->route('home');
+        }
+
         $note = Note::find($id); //carregar a nota
 
         $note->title = $request->text_title; //atualizar os campos das notas
@@ -105,6 +114,11 @@ class MainController extends Controller
     {
         // $id = $this->decryptId($id);
         $id = Operations::decryptId($id);
+
+        if($id == null){
+            return redirect()->route('home');
+        }
+
         $note = Note::find($id); //carregar a nota
 
         return view('delete_note', ['note'=> $note]);
@@ -114,6 +128,10 @@ class MainController extends Controller
     {
         $id = Operations::decryptId($id);
         
+        if($id == null){
+            return redirect()->route('home');
+        }
+
         $note = Note::find($id);
 
         //1.hard delete - remove fisicamente no banco de dados
